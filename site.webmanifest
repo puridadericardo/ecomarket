@@ -1,0 +1,23 @@
+{
+    "name": "EcoMarket - Marketplace Sustentável",
+    "short_name": "EcoMarket",
+    "description": "Conectamos consumidores conscientes com empresas sustentáveis",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "favicon.ico",
+            "sizes": "16x16 32x32",
+            "type": "image/x-icon"
+        }
+    ],
+    "theme_color": "#22C55E",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/"
+}
+

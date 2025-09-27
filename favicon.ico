@@ -1,0 +1,5 @@
+# Favicon.ico para EcoMarket
+# Para criar um favicon.ico real a partir do favicon.svg:
+# 1. Use https://favicon.io/favicon-converter/
+# 2. Ou use ImageMagick: magick favicon.svg -resize 32x32 favicon.ico
+# 3. O navegador usará o favicon.svg como fallback

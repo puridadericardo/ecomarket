@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoMarket - Marketplace Sustentável</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="logo-section">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>EcoMarket</span>
+                        </div>
+                    </div>
+                    <div class="search-section">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Buscar produtos sustentáveis, marcas e muito mais..." id="mainSearch">
+                            <button type="button" onclick="searchProducts()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="user-section">
+                        <div class="user-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Enviar para Ricardo</span>
+                        </div>
+                        <div class="user-actions">
+                            <button class="btn-login" onclick="openLoginModal()">Entrar</button>
+                            <button class="btn-register" onclick="openCompanyModal()">Cadastrar</button>
+                            <div class="cart-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item dropdown">
+                        <a href="#categorias" onclick="scrollToSection('categorias')">
+                            <i class="fas fa-bars"></i>
+                            Categorias
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="#ofertas" onclick="filterProducts('ofertas')">Ofertas</a></li>
+                    <li class="nav-item"><a href="#cupons" onclick="showCoupons()">Cupons</a></li>
+                    <li class="nav-item"><a href="#supermercado" onclick="filterProducts('alimentos')">Supermercado</a></li>
+                    <li class="nav-item"><a href="#moda" onclick="filterProducts('moda')">Moda</a></li>
+                    <li class="nav-item"><a href="#vender" onclick="openCompanyModal()">Vender</a></li>
+                    <li class="nav-item"><a href="#contato" onclick="scrollToSection('contato')">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Banner Section -->
+    <section class="main-banner">
+        <div class="container">
+            <div class="banner-content">
+                <div class="banner-left">
+                    <div class="banner-text">
+                        <h1>FESTIVAL SUSTENTABILIDADE</h1>
+                        <div class="banner-offer">
+                            <span class="discount">ATÉ 60% OFF</span>
+                            <span class="shipping">FULL ENVIOS RÁPIDOS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-right">
+                    <div class="banner-image">
+                        <i class="fas fa-leaf"></i>
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Cards Section -->
+    <section class="service-cards">
+        <div class="container">
+            <div class="cards-grid">
+                <div class="service-card" onclick="showRecentProducts()">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Visto recentemente</h3>
+                        <p>Continue de onde parou</p>
+                        <button class="card-btn">Ver produtos</button>
+                    </div>
+                </div>
+                <div class="service-card" onclick="showPaymentMethods()">
+                    <div class="card-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Meios de pagamento</h3>
+                        <p>Pague suas compras com rapidez e segurança</p>
+                        <button class="card-btn">Mostrar meios</button>
+                    </div>
+                </div>
+                <div class="service-card" onclick="filterProducts('baratos')">
+                    <div class="card-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Menos de R$100</h3>
+                        <p>Confira produtos com preços baixos</p>
+                        <button class="card-btn">Mostrar produtos</button>
+                    </div>
+                </div>
+                <div class="service-card" onclick="filterProducts('mais-vendidos')">
+                    <div class="card-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Mais vendidos</h3>
+                        <p>Explore os produtos que são tendência</p>
+                        <button class="card-btn">Ir para Mais vendidos</button>
+                    </div>
+                </div>
+                <div class="service-card" onclick="showGuarantee()">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Compra garantida</h3>
+                        <p>Você pode devolver sua compra grátis</p>
+                        <button class="card-btn">Como funciona</button>
+                    </div>
+                </div>
+                <div class="service-card" onclick="showOfficialStores()">
+                    <div class="card-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Lojas oficiais</h3>
+                        <p>Suas marcas preferidas</p>
+                        <button class="card-btn">Mostrar lojas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Produtos em Destaque</h2>
+                <a href="#" class="show-all" onclick="scrollToSection('categorias')">Ver todos os produtos</a>
+                <div class="pagination-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="products-container">
+                <div class="products-grid" id="featuredProductsGrid">
+                    <!-- Featured products will be loaded here -->
+                </div>
+                <button class="carousel-nav-btn prev" onclick="scrollCarousel('featuredProductsGrid', 'left')">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-nav-btn next" onclick="scrollCarousel('featuredProductsGrid', 'right')">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="sobre" class="why-choose">
+        <div class="container">
+            <h2>Por que escolher o EcoMarket?</h2>
+            <p class="section-subtitle">Somos mais que um marketplace, somos um movimento pela sustentabilidade</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certificação Verde</h3>
+                    <p>Todas as empresas passam por rigorosa avaliação de sustentabilidade antes de ingressar na plataforma.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Impacto Positivo</h3>
+                    <p>Cada compra contribui para um planeta mais limpo e um futuro mais sustentável.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Comunidade Consciente</h3>
+                    <p>Conecte-se com pessoas que compartilham os mesmos valores de preservação ambiental.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categorias" class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Categorias</h2>
+                <a href="#" class="show-all">Mostrar todas as categorias</a>
+                <div class="pagination-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="categories-grid">
+                <div class="category-item" onclick="filterProducts('moda')">
+                    <div class="category-image">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <span>Moda Sustentável</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('casa')">
+                    <div class="category-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span>Casa Ecológica</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('alimentos')">
+                    <div class="category-image">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <span>Alimentos Orgânicos</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('beleza')">
+                    <div class="category-image">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <span>Beleza Natural</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('mobilidade')">
+                    <div class="category-image">
+                        <i class="fas fa-bicycle"></i>
+                    </div>
+                    <span>Mobilidade Verde</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('tecnologia')">
+                    <div class="category-image">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <span>Tecnologia Verde</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('energia')">
+                    <div class="category-image">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <span>Energia Renovável</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('reciclagem')">
+                    <div class="category-image">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <span>Reciclagem</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('jardim')">
+                    <div class="category-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <span>Jardim Orgânico</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('casa')">
+                    <div class="category-image">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <span>Móveis Sustentáveis</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('livros')">
+                    <div class="category-image">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <span>Livros Verdes</span>
+                </div>
+                <div class="category-item" onclick="filterProducts('brinquedos')">
+                    <div class="category-image">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <span>Brinquedos Ecológicos</span>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Carousel Section -->
+    <section class="products-carousel">
+        <div class="container">
+            <div class="section-header">
+                <h2>Inspirado no último visto</h2>
+                <div class="pagination-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="products-container">
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
+                <button class="carousel-nav-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Relacionado com as visitas em Produtos Sustentáveis</h2>
+                <div class="pagination-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="products-container">
+                <div class="products-grid" id="relatedProductsGrid">
+                    <!-- Related products will be loaded here -->
+                </div>
+                <button class="carousel-nav-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Banners -->
+    <section class="promotional-banners">
+        <div class="container">
+            <div class="banners-grid">
+                <div class="promo-card">
+                    <div class="promo-content">
+                        <span class="promo-discount">ATÉ 40% OFF</span>
+                        <h3>COMPLETE SUA CASA SUSTENTÁVEL</h3>
+                        <button class="promo-btn">Ver mais</button>
+                    </div>
+                </div>
+                <div class="promo-image">
+                    <i class="fas fa-home"></i>
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <div class="promo-card">
+                    <div class="promo-content">
+                        <span class="promo-discount">ATÉ 30% OFF</span>
+                        <h3>MUNDO DA SUSTENTABILIDADE</h3>
+                        <button class="promo-btn">Ver mais</button>
+                    </div>
+                </div>
+                <div class="promo-image">
+                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-recycle"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Based Products -->
+    <section class="cart-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Baseado no seu carrinho de compras</h2>
+                <a href="#" class="go-to-cart">Ir para o carrinho</a>
+                <div class="pagination-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="products-container">
+                <div class="products-grid" id="cartProductsGrid">
+                    <!-- Cart-based products will be loaded here -->
+                </div>
+                <button class="carousel-nav-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="parceiros" class="partners">
+        <div class="container">
+            <h2>Empresas Parceiras</h2>
+            <p class="section-subtitle">Conheça algumas das empresas sustentáveis que fazem parte do nosso marketplace</p>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>EcoFashion</h3>
+                    <p>Moda sustentável com tecidos orgânicos</p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-number">4.9</span>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>GreenHome</h3>
+                    <p>Produtos para casa 100% sustentáveis</p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-number">4.8</span>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>BioFoods</h3>
+                    <p>Alimentos orgânicos direto do produtor</p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-number">4.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Pronto para fazer a diferença?</h2>
+            <p>Junte-se a milhares de pessoas que já escolheram um consumo mais consciente</p>
+            <div class="cta-buttons">
+                <button class="btn-primary" onclick="scrollToSection('categorias')">Começar a Comprar</button>
+                <button class="btn-secondary" onclick="openCompanyModal()">Cadastrar Minha Empresa</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <p class="section-subtitle">Estamos aqui para ajudar você a fazer parte da revolução sustentável</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>E-mail</h3>
+                            <p>contato@ecomarket.com</p>
+                            <span>Respondemos em até 24h</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telefone</h3>
+                            <p>(75) 99215-0593</p>
+                            <span>Segunda a Sexta, 9h às 18h</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Endereço</h3>
+                            <p>Feira de Santana, BA - Brasil</p>
+                            <span>Centro de Inovação Sustentável</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Horário de Atendimento</h3>
+                            <p>Segunda a Sexta: 9h às 18h</p>
+                            <span>Sábado: 9h às 14h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="contactName" placeholder="Nome *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contactEmail" placeholder="E-mail *" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="contactSubject" required>
+                                <option value="">Selecione um assunto</option>
+                                <option value="duvida">Dúvida sobre produtos</option>
+                                <option value="cadastro">Cadastro de empresa</option>
+                                <option value="suporte">Suporte técnico</option>
+                                <option value="parceria">Parceria</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contactMessage" placeholder="Mensagem *" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EcoMarket</h3>
+                    <p>Conectando consumidores conscientes com empresas sustentáveis para um futuro mais verde.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#categorias">Categorias</a></li>
+                        <li><a href="#parceiros">Parceiros</a></li>
+                        <li><a href="#contato">Como Funciona</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Para Empresas</h4>
+                    <ul>
+                        <li><a href="#" onclick="openCompanyModal()">Cadastrar Empresa</a></li>
+                        <li><a href="#">Critérios de Sustentabilidade</a></li>
+                        <li><a href="#">Suporte</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>contato@ecomarket.com</li>
+                        <li>(75) 99215-0593</li>
+                        <li>Feira de Santana, BA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EcoMarket. Todos os direitos reservados.</p>
+                <p>Fundado por <strong>Puridade</strong>.</p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Company Registration Modal -->
+    <div id="companyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cadastrar Empresa</h2>
+                <span class="close" onclick="closeModal('companyModal')">&times;</span>
+            </div>
+            <form id="companyForm">
+                <div class="form-group">
+                    <input type="text" id="companyResponsible" placeholder="Nome do Responsável *" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="companyName" placeholder="Nome da Empresa *" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="companyCNPJ" placeholder="CNPJ *" required>
+                </div>
+                <div class="form-group">
+                    <select id="companyArea" required>
+                        <option value="">Área de Atuação *</option>
+                        <option value="moda">Moda Sustentável</option>
+                        <option value="casa">Casa Ecológica</option>
+                        <option value="alimentos">Alimentos Orgânicos</option>
+                        <option value="beleza">Beleza Natural</option>
+                        <option value="mobilidade">Mobilidade Verde</option>
+                        <option value="tecnologia">Tecnologia Verde</option>
+                        <option value="energia">Energia Renovável</option>
+                        <option value="reciclagem">Reciclagem</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="companyRevenue" required>
+                        <option value="">Faturamento Mensal *</option>
+                        <option value="ate-10k">Até R$ 10.000</option>
+                        <option value="10k-50k">R$ 10.000 - R$ 50.000</option>
+                        <option value="50k-100k">R$ 50.000 - R$ 100.000</option>
+                        <option value="100k-500k">R$ 100.000 - R$ 500.000</option>
+                        <option value="500k-1m">R$ 500.000 - R$ 1.000.000</option>
+                        <option value="acima-1m">Acima de R$ 1.000.000</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="companyLocation" placeholder="Localização *" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="companyEmail" placeholder="E-mail *" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="companyPhone" placeholder="Telefone *" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="companyDescription" placeholder="Descrição da Empresa" rows="4"></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="companyTerms" required>
+                    <label for="companyTerms">Aceito os termos de uso e política de privacidade *</label>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-secondary" onclick="closeModal('companyModal')">Cancelar</button>
+                    <button type="submit" class="btn-primary">Enviar Cadastro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Entrar na Plataforma</h2>
+                <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" id="loginEmail" placeholder="E-mail ou Usuário *" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Senha *" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Lembrar de mim</label>
+                </div>
+                <div class="form-group">
+                    <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-secondary" onclick="closeModal('loginModal')">Cancelar</button>
+                    <button type="submit" class="btn-primary">Entrar</button>
+                </div>
+            </form>
+            <div class="social-login">
+                <p>ou</p>
+                <button class="btn-social google">
+                    <i class="fab fa-google"></i>
+                    Entrar com Google
+                </button>
+                <button class="btn-social facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Entrar com Facebook
+                </button>
+            </div>
+            <p class="register-link">Não tem uma conta? <a href="#" onclick="openRegisterModal()">Cadastre-se aqui</a></p>
+        </div>
+    </div>
+
+    <!-- App Download Modal -->
+    <div id="appModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Baixe o App EcoMarket</h2>
+                <span class="close" onclick="closeModal('appModal')">&times;</span>
+            </div>
+            <div class="app-content">
+                <div class="app-features">
+                    <h3>Recursos do App</h3>
+                    <ul>
+                        <li><i class="fas fa-search"></i> Busca inteligente de produtos sustentáveis</li>
+                        <li><i class="fas fa-qrcode"></i> Scanner de código de barras ecológico</li>
+                        <li><i class="fas fa-heart"></i> Lista de desejos sustentáveis</li>
+                        <li><i class="fas fa-chart-line"></i> Acompanhe seu impacto ambiental</li>
+                        <li><i class="fas fa-bell"></i> Notificações de ofertas verdes</li>
+                        <li><i class="fas fa-users"></i> Comunidade de consumidores conscientes</li>
+                    </ul>
+                </div>
+                <div class="app-download">
+                    <h3>Disponível para Download</h3>
+                    <p>Baixe gratuitamente e comece a fazer compras sustentáveis hoje mesmo!</p>
+                    <div class="download-buttons">
+                        <button class="btn-download">
+                            <i class="fab fa-apple"></i>
+                            <div>
+                                <span>Baixar na</span>
+                                <strong>App Store</strong>
+                            </div>
+                        </button>
+                        <button class="btn-download">
+                            <i class="fab fa-google-play"></i>
+                            <div>
+                                <span>Baixar no</span>
+                                <strong>Google Play</strong>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
